@@ -14,6 +14,11 @@ button.addEventListener("click", (ev) => {
     console.log(video);
     video
       .requestPictureInPicture()
+      .then((pipWindow) => {
+        pipWindow.addEventListener("resize", (ev) => {
+          console.log(pipWindow.width, pipWindow.height);
+        });
+      })
       .then(() => console.log("Video now in Picture-in-Picture"))
       .catch(console.log);
   }
