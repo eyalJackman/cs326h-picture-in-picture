@@ -1,7 +1,7 @@
 {
-  "name": "picture-in-picture-demo",
+  "name": "cs326h-picture-in-picture",
   "version": "1.0.0",
-  "description": "",
+  "description": "A basic example of the Picture-in-Picture Web API in use. Created by Eyal Jackman.",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
