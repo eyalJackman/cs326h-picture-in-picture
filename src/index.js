@@ -2,16 +2,16 @@ import "./styles.css";
 
 document.getElementById("app");
 const video = document.getElementById("blender");
-const button = document.getElementById("button");
+const toggle_button = document.getElementById("toggle-button");
+const disable_button = document.getElementById("disable-button");
 
-button.addEventListener("click", (ev) => {
+toggle_button.addEventListener("click", (ev) => {
   if (document.pictureInPictureElement) {
     document
       .exitPictureInPicture()
       .then(() => console.log("Video not now in Picture-in-Picture"))
       .catch(console.log);
   } else {
-    console.log(video);
     video
       .requestPictureInPicture()
       .then((pipWindow) => {
@@ -22,4 +22,23 @@ button.addEventListener("click", (ev) => {
       .then(() => console.log("Video now in Picture-in-Picture"))
       .catch(console.log);
   }
+});
+
+const changeDisableButton = () => {
+  const txt = disable_button.innerHTML;
+  console.log(disable_button.innerHTML);
+  console.log(disable_button.innerHTML === "Picture-in-Picture Enabled");
+  const isEnabled = txt === "Picture-in-Picture Enabled";
+  disable_button.innerHTML = isEnabled
+    ? "Picture-in-Picture Disabled"
+    : "Picture-in-Picture Enabled";
+  disable_button.style["background-color"] = isEnabled ? "red" : "green";
+};
+
+disable_button.addEventListener("click", async (ev) => {
+  if (document.pictureInPictureElement) {
+    await document.exitPictureInPicture();
+  }
+  changeDisableButton();
+  video.disablePictureInPicture = !video.disablePictureInPicture;
 });
